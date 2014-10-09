@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!-- Author: James Luo -->
+<!-- Date: 9/18/2014 -->
+<!-- CS 178 -->
+<!-- Ant_Build_And_Run -->
+<project name="CountThrees" default="compile" basedir=".">
+    <description>
+        A build file for CountThrees. Assumes the CountThreesJava.zip and threesData.zip is in same dir as build.xml.
+    </description>
+    <property name="source.dir" location="src"/>
+    <property name="build.dir" location="bin"/>
+
+    <target name="init" description="setup and populate project directories">
+        <mkdir dir="${build.dir}"/>
+        <unzip src="./threesData.zip" dest="${build.dir}"/>
+        <mkdir dir="${source.dir}"/>
+        <unzip src="./CountThreesJava.zip" dest="${source.dir}"/>
+    </target>
+
+    <target name="compile" depends="init" description="compile java sources">
+        <javac srcdir="${source.dir}" destdir="${build.dir}" includes="CountThrees.java" includeantruntime="false"/>
+    </target>
+
+    <target name="test" depends="compile" description="executes CountThrees">
+        <java classname="CountThrees" classpath="${build.dir}" fork="true" dir="${build.dir}"/>
+    </target>
+
+    <target name="clean" description="cleans up">
+        <delete dir="${build.dir}"/>
+        <delete dir="${source.dir}"/>
+    </target>
+</project>
