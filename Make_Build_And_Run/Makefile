@@ -15,4 +15,4 @@ readInt32BitLE.o : readInt32BitLE.c readInt32BitLE.h
 test : countThrees
 	./countThrees
 clean :
-	rm -f countThrees countThrees.o readInt32BitLE.o
+	rm -f countThrees countThrees.[co] readInt32BitLE.[cho] threesData.bin
